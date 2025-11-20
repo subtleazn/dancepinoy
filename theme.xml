@@ -13,26 +13,33 @@
 
 
 
-   <title>
-      <b:if cond='data:blog.pageType == &quot;archive&quot;'>
-        <data:blog.pageName/>
-        <b:else/>
-        <b:if cond='data:blog.searchLabel'>
-          <data:blog.pageName/>
-          <b:else/>
-          <b:if cond='data:blog.pageType == &quot;index&quot;'>
-            <data:blog.pageTitle/>
-            <b:else/>
-            <b:if cond='data:blog.pageType != &quot;error_page&quot;'>
-              <data:blog.pageName/> | Dance | Classes | Events | Contest | Philippines
-              <b:else/>
-              Page Not Found | <data:blog.title/> 
-            </b:if>
-          </b:if>
-        </b:if>
-      </b:if>
-    </title>
-    <b:if cond='data:blog.metaDescription == &quot;&quot;'>
+       <title>
+         <b:if cond='data:blog.pageType == &quot;item&quot;'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;index&quot;'>
+           <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;archive&quot;'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.searchLabel'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
+           Page Not Found | <data:blog.title/>
+         <b:else/>
+           <data:blog.pageName/> | <data:blog.title/>
+         </b:if>
+         </b:if>
+         </b:if>
+         </b:if>
+         </b:if>
+         </b:if>
+       </title>    <b:if cond='data:blog.metaDescription == &quot;&quot;'>
 
       <b:else/>
       <meta expr:content='data:blog.metaDescription' itemprop='description'/>     
@@ -46,25 +53,49 @@
 <!-- [ Nash Ang SEO ] -->
 <meta content='f9292ea80355073f' name='yandex-verification'/>
 
-<!-- Facebook OpenGraph -->
+<!-- Social Media Meta Tags -->
+<b:if cond='data:blog.url == data:blog.homepageUrl'>
+  <!-- Homepage -->
+  <meta expr:content='data:blog.title' property='og:title'/>
+  <meta expr:content='data:blog.metaDescription' property='og:description'/>
+  <meta expr:content='data:blog.title' name='twitter:title'/>
+  <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+<b:else/>
+  <!-- Item/Post Page -->
+  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <meta expr:content='data:blog.pageName' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet' property='og:description'/>
+    <meta expr:content='data:blog.pageName' name='twitter:title'/>
+    <meta expr:content='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet' name='twitter:description'/>
+  <b:else/>
+    <!-- Other Pages (Static, Archive, Search, etc.) -->
+    <meta expr:content='data:blog.pageName' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+    <meta expr:content='data:blog.pageName' name='twitter:title'/>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  </b:if>
+</b:if>
+
 <meta content='article' property='og:type'/>
 <meta expr:content='data:blog.title' property='og:site_name'/>
-<meta expr:content='data:blog.pageName' property='og:title'/>
 <meta expr:content='data:blog.url' property='og:url'/>
-<b:if cond='data:blog.metaDescription'>
-<meta expr:content='data:blog.metaDescription' name='description'/>
-<b:else/>
-<meta expr:content='data:post.snippet' name='description'/>
-</b:if>
+
 <b:if cond='data:blog.postImageUrl'>
-<meta expr:content='data:blog.postImageUrl' property='og:image'/>
-<meta content='1200' property='og:image:width'/>
-<meta content='630' property='og:image:height'/>
+  <meta expr:content='data:blog.postImageUrl' property='og:image'/>
+  <meta content='1200' property='og:image:width'/>
+  <meta content='630' property='og:image:height'/>
+  <meta expr:content='data:blog.pageName' property='og:image:alt'/>
+  <meta expr:content='data:blog.postImageUrl' name='twitter:image'/>
+  <meta expr:content='data:blog.pageName' name='twitter:image:alt'/>
+<b:else/>
+  <!-- Fallback image if no post image (replace with a default image URL) -->
+  <meta content='URL_TO_DEFAULT_IMAGE' property='og:image'/>
+  <meta content='URL_TO_DEFAULT_IMAGE' name='twitter:image'/>
 </b:if>
+
 <meta content='261571474460632' property='fb:app_id'/>
 <meta content='739140677' property='fb:admins'/>
 
-<!-- Twitter Meta tags -->
 <meta content='summary_large_image' name='twitter:card'/>
 <meta content='@dancepinoy' name='twitter:site'/>
 <meta content='@dancepinoy' name='twitter:creator'/>
@@ -1759,6 +1790,39 @@ a.item-tag span{display:inline-block;margin-$startSide:5px;font-size:80%}
 ]]></b:skin>
 
 
+    <script type='application/ld+json'>
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "<data:blog.title/>",
+      "url": "<data:blog.homepageUrl/>"
+    }
+    <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    ,
+    {
+      "@type": "BlogPosting",
+      "headline": "<data:blog.pageName/>",
+      "image": {
+        "@type": "ImageObject",
+        "url": "<b:eval expr='data:blog.postImageUrl ? data:blog.postImageUrl : &quot;URL_TO_DEFAULT_IMAGE&quot;'/>",
+        "width": "1200",
+        "height": "630"
+      },
+      "url": "<data:blog.url/>",
+      "datePublished": "<data:post.dateHeader/>",
+      "dateModified": "<data:post.lastUpdated/>",
+      "author": {
+        "@type": "Person",
+        "name": "<data:post.author/>"
+      },
+      "description": "<b:eval expr='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet'/>"
+    }
+    </b:if>
+  ]
+}
+    </script>
 </head>
 <body expr:class='data:blog.pageType' id='webpage' itemscope='' itemtype='https://schema.org/WebPage'>
 
