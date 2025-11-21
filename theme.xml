@@ -39,10 +39,10 @@
          </b:if>
          </b:if>
          </b:if>
-       </title>    <b:if cond='data:blog.metaDescription == &quot;&quot;'>
-
-      <b:else/>
-      <meta expr:content='data:blog.metaDescription' itemprop='description'/>     
+       </title>    <b:if cond='data:blog.metaDescription != &quot;&quot;'>
+      <meta expr:content='data:blog.metaDescription' itemprop='description'/>
+    <b:else/>
+      <meta expr:content='data:blog.title' itemprop='description'/>
     </b:if> 
     <b:if cond='data:blog.metaKeywords == &quot;&quot;'>
 
