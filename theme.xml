@@ -1792,32 +1792,32 @@ a.item-tag span{display:inline-block;margin-$startSide:5px;font-size:80%}
 
     <script type='application/ld+json'>
 {
-  "@context": "https://schema.org",
-  "@graph": [
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@graph&quot;: [
     {
-      "@type": "WebSite",
-      "name": "<data:blog.title/>",
-      "url": "<data:blog.homepageUrl/>"
+      &quot;@type&quot;: &quot;WebSite&quot;,
+      &quot;name&quot;: &quot;<data:blog.title/>&quot;,
+      &quot;url&quot;: &quot;<data:blog.homepageUrl/>&quot;
     }
     <b:if cond='data:blog.pageType == &quot;item&quot;'>
     ,
     {
-      "@type": "BlogPosting",
-      "headline": "<data:blog.pageName/>",
-      "image": {
-        "@type": "ImageObject",
-        "url": "<b:eval expr='data:blog.postImageUrl ? data:blog.postImageUrl : &quot;URL_TO_DEFAULT_IMAGE&quot;'/>",
-        "width": "1200",
-        "height": "630"
+      &quot;@type&quot;: &quot;BlogPosting&quot;,
+      &quot;headline&quot;: &quot;<data:blog.pageName/>&quot;,
+      &quot;image&quot;: {
+        &quot;@type&quot;: &quot;ImageObject&quot;,
+        &quot;url&quot;: &quot;<b:eval expr='data:blog.postImageUrl ? data:blog.postImageUrl : &quot;URL_TO_DEFAULT_IMAGE&quot;'/>&quot;,
+        &quot;width&quot;: &quot;1200&quot;,
+        &quot;height&quot;: &quot;630&quot;
       },
-      "url": "<data:blog.url/>",
-      "datePublished": "<data:post.dateHeader/>",
-      "dateModified": "<data:post.lastUpdated/>",
-      "author": {
-        "@type": "Person",
-        "name": "<data:post.author/>"
+      &quot;url&quot;: &quot;<data:blog.url/>&quot;,
+      &quot;datePublished&quot;: &quot;<data:post.dateHeader/>&quot;,
+      &quot;dateModified&quot;: &quot;<data:post.lastUpdated/>&quot;,
+      &quot;author&quot;: {
+        &quot;@type&quot;: &quot;Person&quot;,
+        &quot;name&quot;: &quot;<data:post.author/>&quot;
       },
-      "description": "<b:eval expr='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet'/>"
+      &quot;description&quot;: &quot;<b:eval expr='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet'/>&quot;
     }
     </b:if>
   ]
@@ -3541,15 +3541,15 @@ UA-12812165-1',
 
 <div class='wrap'>
  <b:section class='footer' id='footer1' showaddelement='yes'>
-   <b:widget id='LinkList1' locked='false' title='PS Media Filipino Network' type='LinkList'>
+   <b:widget id='LinkList1' locked='false' title='OBRA Online Communities' type='LinkList'>
      <b:widget-settings>
        <b:widget-setting name='sorting'>NONE</b:widget-setting>
-       <b:widget-setting name='text-1'>PinoyCalifornia.com</b:widget-setting>
+       <b:widget-setting name='text-1'>Pinoy California</b:widget-setting>
        <b:widget-setting name='link-1'>https://california.pinoyseoul.com</b:widget-setting>
-       <b:widget-setting name='text-0'>OBRAA Website</b:widget-setting>
-       <b:widget-setting name='link-2'>https://artist.pinoyseoul.com</b:widget-setting>
-       <b:widget-setting name='link-0'>https://obraa.pinoyseoul.com</b:widget-setting>
-       <b:widget-setting name='text-2'>PinoyArtist.com</b:widget-setting>
+       <b:widget-setting name='text-0'>OBRA Inc.</b:widget-setting>
+       <b:widget-setting name='link-2'>https://www.pinoyseoul.com</b:widget-setting>
+       <b:widget-setting name='link-0'>https://obra.pinoyseoul.com</b:widget-setting>
+       <b:widget-setting name='text-2'>PinoySeoul.com</b:widget-setting>
      </b:widget-settings>
      <b:includable id='main'>
 
