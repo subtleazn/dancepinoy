@@ -13,7 +13,33 @@
 
 
 
-<title><b:include data='blog' name='pageTitle'/></title>    <b:if cond='data:blog.metaDescription != &quot;&quot;'>
+       <title>
+         <b:if cond='data:blog.pageType == &quot;item&quot;'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;index&quot;'>
+           <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;archive&quot;'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.searchLabel'>
+           <data:blog.pageName/> | <data:blog.title/>
+         <b:else/>
+         <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
+           Page Not Found | <data:blog.title/>
+         <b:else/>
+           <data:blog.pageName/> | <data:blog.title/>
+         </b:if>
+         </b:if>
+         </b:if>
+         </b:if>
+         </b:if>
+         </b:if>
+       </title>    <b:if cond='data:blog.metaDescription != &quot;&quot;'>
       <meta expr:content='data:blog.metaDescription' itemprop='description'/>
     <b:else/>
       <meta expr:content='data:blog.title' itemprop='description'/>
@@ -28,12 +54,27 @@
 <meta content='f9292ea80355073f' name='yandex-verification'/>
 
 <!-- Social Media Meta Tags -->
-<meta expr:content='data:blog.pageType == &quot;index&quot; ? data:blog.title : data:blog.pageName + &quot; | &quot; + data:blog.title' property='og:title'/>
-<meta expr:content='data:blog.metaDescription ? data:blog.metaDescription : data:blog.pageType == &quot;item&quot; ? data:post.snippet : data:blog.title' property='og:description'/>
-<meta expr:content='data:blog.pageType == &quot;index&quot; ? data:blog.title : data:blog.pageName + &quot; | &quot; + data:blog.title' name='twitter:title'/>
-<meta expr:content='data:blog.metaDescription ? data:blog.metaDescription : data:blog.pageType == &quot;item&quot; ? data:post.snippet : data:blog.title' name='twitter:description'/>
-<meta expr:content='data:blog.url.canonical' property='og:url'/>
-<meta expr:content='data:blog.pageType == &quot;item&quot; ? &quot;article&quot; : &quot;website&quot;' property='og:type'/>
+<b:if cond='data:blog.url == data:blog.homepageUrl'>
+  <!-- Homepage -->
+  <meta expr:content='data:blog.title' property='og:title'/>
+  <meta expr:content='data:blog.metaDescription' property='og:description'/>
+  <meta expr:content='data:blog.title' name='twitter:title'/>
+  <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+<b:else/>
+  <!-- Item/Post Page -->
+  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <meta expr:content='data:blog.pageName' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet' property='og:description'/>
+    <meta expr:content='data:blog.pageName' name='twitter:title'/>
+    <meta expr:content='data:blog.metaDescription ? data:blog.metaDescription : data:post.snippet' name='twitter:description'/>
+  <b:else/>
+    <!-- Other Pages (Static, Archive, Search, etc.) -->
+    <meta expr:content='data:blog.pageName' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+    <meta expr:content='data:blog.pageName' name='twitter:title'/>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  </b:if>
+</b:if>
 
 <meta content='article' property='og:type'/>
 <meta expr:content='data:blog.title' property='og:site_name'/>
