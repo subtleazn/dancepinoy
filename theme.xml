@@ -13,33 +13,11 @@
 
 
 
-       <title>
-         <b:if cond='data:blog.pageType == &quot;item&quot;'>
-           <data:blog.pageName/> | <data:blog.title/>
-         <b:else/>
-         <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
-           <data:blog.pageName/> | <data:blog.title/>
-         <b:else/>
-         <b:if cond='data:blog.pageType == &quot;index&quot;'>
-           <data:blog.title/>
-         <b:else/>
-         <b:if cond='data:blog.pageType == &quot;archive&quot;'>
-           <data:blog.pageName/> | <data:blog.title/>
-         <b:else/>
-         <b:if cond='data:blog.searchLabel'>
-           <data:blog.pageName/> | <data:blog.title/>
-         <b:else/>
-         <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
-           Page Not Found | <data:blog.title/>
-         <b:else/>
-           <data:blog.pageName/> | <data:blog.title/>
-         </b:if>
-         </b:if>
-         </b:if>
-         </b:if>
-         </b:if>
-         </b:if>
-       </title>    <b:if cond='data:blog.metaDescription != &quot;&quot;'>
+    <b:if cond='data:view.isHomepage'>
+      <title><data:blog.title.escaped/></title>
+    <b:else/>
+      <title><data:view.title.escaped/> - <data:blog.title.escaped/></title>
+    </b:if>    <b:if cond='data:blog.metaDescription != &quot;&quot;'>
       <meta expr:content='data:blog.metaDescription' itemprop='description'/>
     <b:else/>
       <meta expr:content='data:blog.title' itemprop='description'/>
